@@ -38,4 +38,10 @@ class _MyHomePageState extends State<MyHomePage> {
       ],
     );
   }
+
+  @override
+  void dispose() {
+    widget.channel.sink.close();
+    super.dispose();
+  }
 }
