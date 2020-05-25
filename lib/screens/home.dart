@@ -28,6 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
           onPressed: () {
             if (_messageFieldController.text.isNotEmpty) {
               widget.channel.sink.add(_messageFieldController.text);
+              _messageFieldController.clear();
             }
           },
         ),
