@@ -24,7 +24,10 @@ class _MyHomePageState extends State<MyHomePage> {
         StreamBuilder(
           stream: widget.channel.stream,
           builder: (context, snapshot) {
-            return Text(snapshot.hasData ? '${snapshot.data}' : '');
+            return Padding(
+              padding: const EdgeInsets.all(24.0),
+              child: Text(snapshot.hasData ? '${snapshot.data}' : ''),
+            );
           },
         ),
         RaisedButton(
