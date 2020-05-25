@@ -9,16 +9,32 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  TextEditingController _messageFieldController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
+        Form(
+          child: TextFormField(
+            controller: _messageFieldController,
+            decoration: InputDecoration(labelText: 'Send a message'),
+          ),
+        ),
         StreamBuilder(
           stream: widget.channel.stream,
           builder: (context, snapshot) {
             return Text(snapshot.hasData ? '${snapshot.data}' : '');
           },
-        )
+        ),
+        RaisedButton(
+          child: Text("Send!"),
+          onPressed: () {
+            if (_messageFieldController.text.isNotEmpty) {
+              widget.channel.sink.add(_messageFieldController.text);
+            }
+          },
+        ),
       ],
     );
   }
