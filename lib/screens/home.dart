@@ -11,8 +11,15 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text("DATA FROM THE SERVER"),
+    return Column(
+      children: <Widget>[
+        StreamBuilder(
+          stream: widget.channel.stream,
+          builder: (context, snapshot) {
+            return Text(snapshot.hasData ? '${snapshot.data}' : '');
+          },
+        )
+      ],
     );
   }
 }
