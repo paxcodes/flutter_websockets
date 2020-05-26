@@ -32,20 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
             }
           },
         ),
-        StreamBuilder(
-          stream: widget.channel.stream,
-          builder: (context, snapshot) {
-            String text = '';
-            if (snapshot.hasData) {
-              text = snapshot.data;
-            }
-            return Padding(
-              padding: const EdgeInsets.all(24.0),
-              child: Text(text, style: TextStyle(fontSize: 20)),
-            );
-          },
-        ),
-        MessagesList(),
+        MessagesStream(channel: widget.channel),
       ],
     );
   }
