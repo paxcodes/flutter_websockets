@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:web_socket_channel/io.dart';
 
 class MessagesStream extends StatefulWidget {
-  MessagesStream({this.channel});
+  MessagesStream({this.stream});
 
-  final IOWebSocketChannel channel;
+  final Stream stream;
 
   @override
   _MessagesStreamState createState() => _MessagesStreamState();
@@ -16,7 +16,7 @@ class _MessagesStreamState extends State<MessagesStream> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream: widget.channel.stream,
+      stream: widget.stream,
       builder: (context, snapshot) {
         String text = '';
         if (snapshot.hasData) {
@@ -34,12 +34,5 @@ class _MessagesStreamState extends State<MessagesStream> {
         );
       },
     );
-  }
-
-  @override
-  void dispose() {
-    // TODO Do I have to also close it here???
-    widget.channel.sink.close();
-    super.dispose();
   }
 }

@@ -32,7 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
             }
           },
         ),
-        MessagesStream(channel: widget.channel),
+        MessagesStream(stream: widget.channel.stream),
       ],
     );
   }
