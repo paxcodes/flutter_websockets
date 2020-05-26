@@ -21,7 +21,7 @@ class _MessagesStreamState extends State<MessagesStream> {
         String text = '';
         if (snapshot.hasData) {
           text = snapshot.data;
-          messages.add(text);
+          messages.insert(0, text);
         }
         return Expanded(
           child: ListView.builder(
